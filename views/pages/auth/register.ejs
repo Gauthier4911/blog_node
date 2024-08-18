@@ -1,0 +1,35 @@
+<%- include('../../layouts/header'); -%>
+
+<main class="container">
+    <section class="row justify-content-center align-items-center vh-100">
+        <div class="col-md-4">
+            <h3 class="center">S 'inscrire</h3>
+            <form action="/register" method="post">
+                <div class="mb-3">
+                    <input type="text" id="username" name="username" placeholder="Nom" class="form-control">
+                    <%- include('../../component/message_error',{errors:messages.errors,path:'username'});  -%>
+                </div>
+                <div class="mb-3">
+                    <input type="email" id="email" name="email" placeholder="Email" class="form-control">
+                    <%- include('../../component/message_error',{errors:messages.errors,path:'email'});  -%>
+                    <% if (messages.mail) { %><small class="text-danger form-text">Cet email est déjà utilisé</small><% } %>
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" class="form-control">
+                    <%- include('../../component/message_error',{errors:messages.errors,path:'password'});  -%>
+                </div>
+                <div class="mb-3">
+                    <input type="password" id="password" name="password_confirmation" placeholder="Répéter le mot de passe" class="form-control">
+                    <%- include('../../component/message_error',{errors:messages.errors,path:'password_confirmation'});  -%>
+                </div>
+                <p class="text-center my-3">
+                    Deja un compte? connectez - vous
+                    <a href="/login">ici</a>
+                </p>
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<%- include('../../layouts/footer'); -%>

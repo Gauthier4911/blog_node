@@ -1,0 +1,9 @@
+<% if (errors) { %>
+    <% errors.forEach(function (error) {%>
+        <% if(error.path === path){ %>
+            <small class="text-danger">
+                <%=  error.message  %>
+            </small>
+        <% } %>
+    <% }); %>
+<% } %>

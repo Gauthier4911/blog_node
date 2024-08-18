@@ -1,0 +1,25 @@
+<%- include('../../layouts/header'); -%>
+
+    <main class="container">
+        <section class="row justify-content-center align-items-center vh-100">
+            <div class="col-md-4">
+                <h3 class="center">Se connecter</h3>
+                <% if (messages.identifiant) { %><div class="alert alert-danger form-text">Identifiant ou mot de passe incorrect</div><% } %>
+                <form action="/login" method="post">
+                    <div class="mb-3">
+                        <input type="email" id="email" name="email" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" id="password" name="password" placeholder="Mot de passe" class="form-control">
+                    </div>
+                    <p class="text-center my-3">
+                        Vous etes nouveau inscrivez - vous
+                        <a href="/register">ici</a>
+                    </p>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+<%- include('../../layouts/footer'); -%>

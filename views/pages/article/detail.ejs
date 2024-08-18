@@ -1,0 +1,61 @@
+<%- include('../../layouts/header'); -%>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="<%= '/imageArticles/'+article.image %>" /></div>
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bolder"><%= article.name %></h1>
+                <p class="lead"><%= article.desc %></p>
+                <p>
+                    publié par <strong><%= article.user.name %></strong>
+                    <br>
+                    <%= article.createdAt %>
+                </p>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-lg-6">
+                <form method="post" action="/article/<%= article._id %>/comment">
+                    <div class="mb-3">
+                        <textarea class="form-control" id="message" name="comment" rows="3" placeholder="mettre un commentaire..."></textarea>
+                    </div>
+                    <button id="btnComment" disabled class="btn btn-primary  w-100"  type="submit">Commenter</button>
+                </form>
+                <h3>Commentaire</h3>
+                <div class="accordion" id="accordionExample">
+                    <% commentaires.forEach(function (commentaire){ %>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a<%= commentaire._id %>" aria-expanded="true" aria-controls="collapseOne">
+                                    <%= commentaire.user.name %>
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse show" id="a<%= commentaire._id %>" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <%= commentaire.comment %>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let textarea = document.querySelector('textarea')
+    let btn = document.querySelector('#btnComment')
+
+    textarea.addEventListener('input',function (e){
+        let val = e.target.value.trim()
+        if (val.length !== 0){
+            btn.removeAttribute('disabled')
+        }else {
+            btn.setAttribute('disabled', true)
+        }
+    })
+</script>
+
+<%- include('../../layouts/footer'); -%>
